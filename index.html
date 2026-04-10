@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Princess Scavenger Hunt 👑</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root {
+      --gold: #f5c842;
+      --rose: #e8609a;
+      --sky: #5bc3eb;
+      --violet: #9b5de5;
+      --mint: #00d4aa;
+      --cream: #fff8f0;
+      --dark: #1a0533;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Starfield */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.6) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    .hero-crown {
+      font-size: 3.5rem;
+      animation: float 3s ease-in-out infinite;
+      display: block;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.6rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(245,200,66,0.6), 0 2px 0 rgba(0,0,0,0.5);
+      margin: 0.5rem 0;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      max-width: 500px;
+      margin-inline: auto;
+    }
+
+    .sparkle-divider {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      opacity: 0.8;
+      letter-spacing: 0.5rem;
+    }
+
+    .grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 4rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--card-glow);
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: inherit;
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .card-num {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.7rem;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .card-img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      border-radius: 12px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    }
+
+    .card-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    .card-princess {
+      font-size: 0.7rem;
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .qr-wrap {
+      background: white;
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .qr-wrap canvas, .qr-wrap img {
+      display: block;
+      border-radius: 6px;
+    }
+
+    .scan-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-crown">👑</span>
+  <h1>Princess Scavenger Hunt</h1>
+  <p>The princesses have lost their special items! Scan each QR code to get your next clue!</p>
+  <div class="sparkle-divider">✨ ⭐ ✨ ⭐ ✨</div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer>Made with 💖 for little adventurers</footer>
+
+<script>
+const BASE_URL = window.location.origin + window.location.pathname.replace('index.html','');
+
+const items = [
+  {
+    id: 1,
+    name: "Glass Slipper",
+    princess: "Cinderella",
+    emoji: "👠",
+    color: "--sky",
+    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
+    img: "https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Cinderella_slipper.jpg/220px-Cinderella_slipper.jpg"
+  },
+  {
+    id: 2,
+    name: "Poisoned Apple",
+    princess: "Snow White",
+    emoji: "🍎",
+    color: "--rose",
+    glow: "radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 3,
+    name: "Spinning Wheel",
+    princess: "Sleeping Beauty",
+    emoji: "🌀",
+    color: "--violet",
+    glow: "radial-gradient(circle at 50% 0%, rgba(155,93,229,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 4,
+    name: "Dinglehopper",
+    princess: "Ariel (Little Mermaid)",
+    emoji: "🔱",
+    color: "--sky",
+    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 5,
+    name: "Enchanted Rose",
+    princess: "Belle (Beauty & the Beast)",
+    emoji: "🌹",
+    color: "--rose",
+    glow: "radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 6,
+    name: "Magic Lamp",
+    princess: "Jasmine (Aladdin)",
+    emoji: "🪔",
+    color: "--gold",
+    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 7,
+    name: "Compass",
+    princess: "Pocahontas",
+    emoji: "🧭",
+    color: "--mint",
+    glow: "radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 8,
+    name: "Sword (Fa Mulan)",
+    princess: "Mulan",
+    emoji: "⚔️",
+    color: "--gold",
+    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 9,
+    name: "Tiana as Frog",
+    princess: "Tiana (Princess & the Frog)",
+    emoji: "🐸",
+    color: "--mint",
+    glow: "radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 10,
+    name: "Frying Pan",
+    princess: "Rapunzel (Tangled)",
+    emoji: "🍳",
+    color: "--gold",
+    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 11,
+    name: "Bow & Arrows",
+    princess: "Merida (Brave)",
+    emoji: "🏹",
+    color: "--rose",
+    glow: "radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 12,
+    name: "Heart of Te Fiti",
+    princess: "Moana",
+    emoji: "💚",
+    color: "--mint",
+    glow: "radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 13,
+    name: "Snowflake",
+    princess: "Elsa (Frozen)",
+    emoji: "❄️",
+    color: "--sky",
+    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 14,
+    name: "Anna's Cloak",
+    princess: "Anna (Frozen)",
+    emoji: "🧥",
+    color: "--violet",
+    glow: "radial-gradient(circle at 50% 0%, rgba(155,93,229,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 15,
+    name: "Water Orb",
+    princess: "Raya (Raya & the Last Dragon)",
+    emoji: "💧",
+    color: "--sky",
+    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
+    img: ""
+  },
+  {
+    id: 16,
+    name: "Star Butterfly",
+    princess: "Asha (Wish)",
+    emoji: "⭐",
+    color: "--gold",
+    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
+    img: ""
+  },
+];
+
+const grid = document.getElementById('grid');
+
+items.forEach((item, idx) => {
+  const clueUrl = `${BASE_URL}clues/clue-${item.id}.html`;
+
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.style.setProperty('--card-glow', item.glow);
+
+  card.innerHTML = `
+    <span class="card-num">#${item.id}</span>
+    <div class="card-princess">${item.emoji} ${item.princess}</div>
+    <div class="card-name">${item.name}</div>
+    <div class="qr-wrap" id="qr-${item.id}"></div>
+    <div class="scan-label">📱 Scan to get your clue!</div>
+  `;
+
+  grid.appendChild(card);
+
+  // Generate QR code after DOM insertion
+  setTimeout(() => {
+    new QRCode(document.getElementById(`qr-${item.id}`), {
+      text: clueUrl,
+      width: 120,
+      height: 120,
+      colorDark: "#1a0533",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }, 50 * idx);
+});
+</script>
+</body>
+</html>

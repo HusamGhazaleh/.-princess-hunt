@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clue #1 — Cinderella</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0d1b2a;
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated glow background */
+    body::before {
+      content: '';
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #5bc3eb33, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+    }
+
+    /* Floating particles */
+    .particle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #5bc3eb;
+      opacity: 0;
+      animation: rise linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rise {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    .card {
+      position: relative;
+      z-index: 10;
+      background: rgba(255,255,255,0.06);
+      border: 2px solid #5bc3eb55;
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 60px #5bc3eb30, 0 20px 60px rgba(0,0,0,0.5);
+      animation: fadeIn 0.6s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .badge {
+      display: inline-block;
+      background: #5bc3eb22;
+      border: 1px solid #5bc3eb66;
+      color: #5bc3eb;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .big-emoji {
+      font-size: 5rem;
+      margin: 0.5rem 0;
+      animation: bounce 2s ease-in-out infinite;
+      display: block;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.1rem, 4vw, 1.6rem);
+      color: #5bc3eb;
+      margin: 0.5rem 0 0.25rem;
+      text-shadow: 0 0 20px #5bc3eb88;
+    }
+
+    .princess-name {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 1.5rem 0;
+    }
+
+    .clue-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #5bc3eb;
+      margin-bottom: 0.75rem;
+    }
+
+    .clue-box {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 1.25rem 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .clue-text {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    
+
+    .home-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .home-link:hover { color: #5bc3eb; }
+
+    .counter {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 20;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 0.4rem 0.9rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.75rem;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+
+<div class="counter">#1 of 16</div>
+
+<!-- Particles -->
+<div class="particle" style="left:10%; animation-duration:6s; animation-delay:0s;"></div>
+<div class="particle" style="left:25%; animation-duration:8s; animation-delay:1s;"></div>
+<div class="particle" style="left:40%; animation-duration:5s; animation-delay:2s;"></div>
+<div class="particle" style="left:60%; animation-duration:9s; animation-delay:0.5s;"></div>
+<div class="particle" style="left:75%; animation-duration:7s; animation-delay:3s;"></div>
+<div class="particle" style="left:88%; animation-duration:6s; animation-delay:1.5s;"></div>
+
+<div class="card">
+  <div class="badge">✨ Clue #1 Found! ✨</div>
+  <span class="big-emoji">👠</span>
+  <h1>You found Cinderella's Glass Slipper!</h1>
+  <div class="princess-name">— Cinderella —</div>
+  <hr class="divider"/>
+  <div class="clue-label">🗺️ Your Next Clue</div>
+  <div class="clue-box">
+    <p class="clue-text">Even Cinderella had to be on time!
+Look for a place in school that
+TELLS you what time it is —
+maybe it TICKS or has NUMBERS on the wall! 🕐</p>
+  </div>
+
+  
+  <div style="margin-top:1.5rem; padding:1rem; background:rgba(255,255,255,0.04); border-radius:14px; border:1px solid rgba(255,255,255,0.08);">
+    <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.2em;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;">Next Item to Find</div>
+    <div style="font-size:1.8rem;">🍎</div>
+    <div style="color:rgba(255,255,255,0.7);font-weight:800;font-size:0.9rem;margin-top:0.3rem;">Poisoned Apple</div>
+    <div style="color:rgba(255,255,255,0.35);font-size:0.75rem;font-weight:600;">from Snow White</div>
+  </div>
+
+
+  <a href="../index.html" class="home-link">← Back to all items</a>
+</div>
+
+</body>
+</html>
