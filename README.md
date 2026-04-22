@@ -1,58 +1,31 @@
 # 👑 Princess Scavenger Hunt
 
-A magical Disney Princess scavenger hunt for a Daddy-Daughter Dance! Kids scan QR codes on printed cards to get clues pointing to the next item's hiding spot around school.
+A magical Disney Princess scavenger hunt for a Daddy-Daughter Dance!
 
-## 🗂️ Structure
+## 📍 Hunt Order & Locations
 
-```
-index.html          ← Main page with all 16 princess items + QR codes
-clues/
-  clue-1.html       ← Cinderella's Glass Slipper clue
-  clue-2.html       ← Snow White's Apple clue
-  clue-3.html       ← Sleeping Beauty's Spinning Wheel clue
-  ...up to clue-16
-```
+| # | Princess | Item | Hidden At |
+|---|----------|------|-----------|
+| 1 | Cinderella | Glass Slipper | By the 1st Grade Door |
+| 2 | Snow White | Red Apple | By the Kindergarten Door |
+| 3 | Aurora | Spinning Wheel | By the 2nd Grade Bathroom |
+| 4 | Ariel | Dinglehopper | In the Lunch Room |
+| 5 | Belle | Enchanted Rose | By Door 17 |
+| 6 | Jasmine | Magic Lamp | By the Gym |
+| 7 | Pocahontas | Compass | Near the Music Room |
+| 8 | Mulan | Sword | By the Library Entrance |
+| 9 | Tiana | Frog | By the Copier Room |
+| 10 | Rapunzel | Frying Pan | By the Main Entrance |
+| 11 | Merida | Bow and Arrow | By the Photo Booth |
+| 12 | Moana | Heart of Te Fiti | By the Instrument Room |
+| 13 | Elsa | Snowflake | By the Staff Break Room |
+| 14 | Anna | Cloak | By the 2nd Grade Reading Tables |
+| 15 | Raya | Dragon Gem | By the Lost and Found |
+| 16 | Asha ⭐ | Star | By the "I Forgot" Table 🎉 |
 
-## 🚀 Deploying to GitHub Pages
-
-1. Create a new GitHub repository (e.g. `princess-hunt`)
-2. Upload all files keeping the folder structure
-3. Go to **Settings → Pages**
-4. Under **Source**, select `main` branch and `/ (root)` folder
-5. Click **Save** — your site will be live at:
-   `https://YOUR-USERNAME.github.io/princess-hunt/`
-
-## 🖨️ How to Use
-
-1. Deploy to GitHub Pages to get your live URL
-2. Open `index.html` — QR codes auto-generate pointing to your live clue pages
-3. **Print the main page** — each card has a QR code kids can scan
-4. Cut out the cards and hide or display them around the school
-5. Kids scan a QR code → get a rhyming clue → find the next item → repeat!
-
-## 📍 Clue Locations (School-Themed)
-
-| # | Princess | Item | Clue Location |
-|---|----------|------|---------------|
-| 1 | Cinderella | Glass Slipper | Clock / timer on wall |
-| 2 | Snow White | Poisoned Apple | Cafeteria fridge / snack area |
-| 3 | Sleeping Beauty | Spinning Wheel | Classroom (where kids sit & learn) |
-| 4 | Ariel | Dinglehopper | Bathroom / sink area |
-| 5 | Belle | Enchanted Rose | Library |
-| 6 | Jasmine | Magic Lamp | Map / geography display |
-| 7 | Pocahontas | Compass | Playground / outdoor area |
-| 8 | Mulan | Sword | Gym / PE area |
-| 9 | Tiana | Tiana as Frog | Cafeteria / kitchen |
-| 10 | Rapunzel | Frying Pan | Art room |
-| 11 | Merida | Bow & Arrows | Classroom desks / writing area |
-| 12 | Moana | Heart of Te Fiti | Music room |
-| 13 | Elsa | Snowflake | Computer lab |
-| 14 | Anna | Cloak | Coat closet / cubbies |
-| 15 | Raya | Water Orb | Water fountain |
-| 16 | Asha | Star | Dance floor / celebration spot 🎉 |
-
-## ✏️ Customizing Clues
-
-Edit `clues/clue-N.html` and find the `clue-text` paragraph to change any clue to match your specific school layout.
-
-## 💖 Have fun!
+## 🚀 GitHub Pages Setup
+1. Create a new public repo (e.g. `princess-hunt`)
+2. Upload all files keeping folder structure
+3. Settings → Pages → Source: main / root → Save
+4. Live at: `https://YOUR-USERNAME.github.io/princess-hunt/`
+5. QR codes auto-generate pointing to your live clue pages — then print & hide!

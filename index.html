@@ -218,150 +218,22 @@
 const BASE_URL = window.location.origin + window.location.pathname.replace('index.html','');
 
 const items = [
-  {
-    id: 1,
-    name: "Glass Slipper",
-    princess: "Cinderella",
-    emoji: "👠",
-    color: "--sky",
-    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
-    img: "https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Cinderella_slipper.jpg/220px-Cinderella_slipper.jpg"
-  },
-  {
-    id: 2,
-    name: "Poisoned Apple",
-    princess: "Snow White",
-    emoji: "🍎",
-    color: "--rose",
-    glow: "radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 3,
-    name: "Spinning Wheel",
-    princess: "Sleeping Beauty",
-    emoji: "🌀",
-    color: "--violet",
-    glow: "radial-gradient(circle at 50% 0%, rgba(155,93,229,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 4,
-    name: "Dinglehopper",
-    princess: "Ariel (Little Mermaid)",
-    emoji: "🔱",
-    color: "--sky",
-    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 5,
-    name: "Enchanted Rose",
-    princess: "Belle (Beauty & the Beast)",
-    emoji: "🌹",
-    color: "--rose",
-    glow: "radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 6,
-    name: "Magic Lamp",
-    princess: "Jasmine (Aladdin)",
-    emoji: "🪔",
-    color: "--gold",
-    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 7,
-    name: "Compass",
-    princess: "Pocahontas",
-    emoji: "🧭",
-    color: "--mint",
-    glow: "radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 8,
-    name: "Sword (Fa Mulan)",
-    princess: "Mulan",
-    emoji: "⚔️",
-    color: "--gold",
-    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 9,
-    name: "Tiana as Frog",
-    princess: "Tiana (Princess & the Frog)",
-    emoji: "🐸",
-    color: "--mint",
-    glow: "radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 10,
-    name: "Frying Pan",
-    princess: "Rapunzel (Tangled)",
-    emoji: "🍳",
-    color: "--gold",
-    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 11,
-    name: "Bow & Arrows",
-    princess: "Merida (Brave)",
-    emoji: "🏹",
-    color: "--rose",
-    glow: "radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 12,
-    name: "Heart of Te Fiti",
-    princess: "Moana",
-    emoji: "💚",
-    color: "--mint",
-    glow: "radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 13,
-    name: "Snowflake",
-    princess: "Elsa (Frozen)",
-    emoji: "❄️",
-    color: "--sky",
-    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 14,
-    name: "Anna's Cloak",
-    princess: "Anna (Frozen)",
-    emoji: "🧥",
-    color: "--violet",
-    glow: "radial-gradient(circle at 50% 0%, rgba(155,93,229,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 15,
-    name: "Water Orb",
-    princess: "Raya (Raya & the Last Dragon)",
-    emoji: "💧",
-    color: "--sky",
-    glow: "radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",
-    img: ""
-  },
-  {
-    id: 16,
-    name: "Star Butterfly",
-    princess: "Asha (Wish)",
-    emoji: "⭐",
-    color: "--gold",
-    glow: "radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",
-    img: ""
-  },
+  { id:1,  name:"Glass Slipper",      princess:"Cinderella",              emoji:"👠", color:"--sky",    glow:"radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",   location:"By the 1st Grade Door" },
+  { id:2,  name:"Red Apple",          princess:"Snow White",              emoji:"🍎", color:"--rose",   glow:"radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",  location:"By the Kindergarten Door" },
+  { id:3,  name:"Spinning Wheel",     princess:"Aurora (Sleeping Beauty)",emoji:"🌀", color:"--violet", glow:"radial-gradient(circle at 50% 0%, rgba(155,93,229,0.15), transparent 70%)",  location:"By the 2nd Grade Bathroom" },
+  { id:4,  name:"Dinglehopper",       princess:"Ariel",                   emoji:"🍴", color:"--sky",    glow:"radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",   location:"In the Lunch Room" },
+  { id:5,  name:"Enchanted Rose",     princess:"Belle",                   emoji:"🌹", color:"--rose",   glow:"radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",  location:"By Door 17" },
+  { id:6,  name:"Magic Lamp",         princess:"Jasmine",                 emoji:"🪔", color:"--gold",   glow:"radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",  location:"By the Gym" },
+  { id:7,  name:"Compass",            princess:"Pocahontas",              emoji:"🧭", color:"--mint",   glow:"radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",   location:"Near the Music Room" },
+  { id:8,  name:"Sword",              princess:"Mulan",                   emoji:"⚔️", color:"--gold",   glow:"radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",  location:"By the Library Entrance" },
+  { id:9,  name:"Frog",               princess:"Tiana",                   emoji:"🐸", color:"--mint",   glow:"radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",   location:"By the Copier Room" },
+  { id:10, name:"Frying Pan",         princess:"Rapunzel",                emoji:"🍳", color:"--gold",   glow:"radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",  location:"By the Main Entrance" },
+  { id:11, name:"Bow and Arrow",      princess:"Merida",                  emoji:"🏹", color:"--rose",   glow:"radial-gradient(circle at 50% 0%, rgba(232,96,154,0.15), transparent 70%)",  location:"By the Photo Booth" },
+  { id:12, name:"Heart of Te Fiti",   princess:"Moana",                   emoji:"💚", color:"--mint",   glow:"radial-gradient(circle at 50% 0%, rgba(0,212,170,0.15), transparent 70%)",   location:"By the Instrument Room" },
+  { id:13, name:"Snowflake",          princess:"Elsa",                    emoji:"❄️", color:"--sky",    glow:"radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",   location:"By the Staff Break Room" },
+  { id:14, name:"Cloak",              princess:"Anna",                    emoji:"🧥", color:"--violet", glow:"radial-gradient(circle at 50% 0%, rgba(155,93,229,0.15), transparent 70%)",  location:"By the 2nd Grade Reading Tables" },
+  { id:15, name:"Dragon Gem",         princess:"Raya",                    emoji:"💎", color:"--sky",    glow:"radial-gradient(circle at 50% 0%, rgba(91,195,235,0.15), transparent 70%)",   location:"By the Lost and Found" },
+  { id:16, name:"Star",               princess:"Asha (Wish)",             emoji:"⭐", color:"--gold",   glow:"radial-gradient(circle at 50% 0%, rgba(245,200,66,0.15), transparent 70%)",  location:"By the 'I Forgot' Table" },
 ];
 
 const grid = document.getElementById('grid');
@@ -379,6 +251,7 @@ items.forEach((item, idx) => {
     <div class="card-name">${item.name}</div>
     <div class="qr-wrap" id="qr-${item.id}"></div>
     <div class="scan-label">📱 Scan to get your clue!</div>
+    <div style="font-size:0.6rem;color:rgba(255,255,255,0.3);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-top:-4px;">📍 ${item.location}</div>
   `;
 
   grid.appendChild(card);
